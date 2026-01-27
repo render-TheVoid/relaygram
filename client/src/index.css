@@ -3,6 +3,26 @@
 
 @custom-variant dark (&:is(.dark *));
 
+.custom-scroll::-webkit-scrollbar,
+.sidebar-scroll::-webkit-scrollbar,
+code::-webkit-scrollbar {
+  width: 2px;
+  height: 2px;
+}
+
+.custom-scroll::-webkit-scrollbar-thumb,
+.sidebar-scroll::-webkit-scrollbar-thumb,
+code::-webkit-scrollbar {
+  background-color: #555;
+  border-radius: 0px;
+}
+
+.custom-scroll::-webkit-scrollbar-track,
+.sidebar-scroll::-webkit-scrollbar-track,
+code::-webkit-scrollbar {
+  background-color: #1e1e1e;
+}
+
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
@@ -117,6 +137,7 @@
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
   }

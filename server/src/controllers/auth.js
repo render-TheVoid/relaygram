@@ -1,6 +1,7 @@
 import { generateToken } from "../lib/utils.js";
 import User from "../models/user.js";
 import bcrypt from "bcryptjs";
+import cloudinary from '../lib/cloudinary.js'
 
 export const signUp = async (req, res) => {
     const { fullName, email, password } = req.body;
@@ -81,3 +82,35 @@ export const login = async (req, res) => {
 export const logout = (req, res) => {
 
 }
+
+export const updateProfile = async (req, res) => {
+    try {
+        const { profilePic } = req.body;
+        const userId = req.user._id;
+
+        if (!profilePic) {
+            return res.status(401).json({ message: "Profile picture is required!" });
+        }
+
+        const updateResponse = await cloudinary.uploader.upload(profilePic);
+        const updateUser = await User.findById(
+            userId,
+            { profilePic: updateResponse.secure_url },
+            { new: true }
+        );
+
+        return res.status(201).json(updateUser);
+    }
+    catch (err) {
+        console.log(`Some error occured: ${err}`);
+    }
+}
+
+export const checkUser = (req, res) => {
+    try {
+        return res.status(400).json(req.user);
+    } catch (err) {
+        console.log(`Some error occured fetching the current authenticated user: ${err}`);
+        res.status(500).json({ message: "Some interal error occured!" });
+    }
+} 
