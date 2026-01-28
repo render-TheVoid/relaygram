@@ -24,6 +24,6 @@ export const protectRoute = async (req, res, next) => {
     }
 
     catch (err) {
-        console.log(`Some error occured: ${err}`);
+        console.log(`Some error occured at route protection endpoint: ${err}`);
     }
 };

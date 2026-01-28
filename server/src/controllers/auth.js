@@ -80,7 +80,12 @@ export const login = async (req, res) => {
 }
 
 export const logout = (req, res) => {
-
+    try {
+        res.cookie("jwt", "", { maxAge: 0 });
+        res.status(200).json({ message: "You have been logout successfully!" });
+    } catch {
+        console.log(`Some error occured at logout endpoint: ${err}`);
+    }
 }
 
 export const updateProfile = async (req, res) => {
@@ -102,7 +107,7 @@ export const updateProfile = async (req, res) => {
         return res.status(201).json(updateUser);
     }
     catch (err) {
-        console.log(`Some error occured: ${err}`);
+        console.log(`Some error occured at update profile endpoint: ${err}`);
     }
 }
 
@@ -110,7 +115,7 @@ export const checkUser = (req, res) => {
     try {
         return res.status(400).json(req.user);
     } catch (err) {
-        console.log(`Some error occured fetching the current authenticated user: ${err}`);
+        console.log(`Some error occurred fetching the current authenticated user: ${err}`);
         res.status(500).json({ message: "Some interal error occured!" });
     }
 } 
