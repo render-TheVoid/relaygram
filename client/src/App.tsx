@@ -6,7 +6,7 @@ import { Route, Routes } from 'react-router-dom';
 
 const App: React.FC = () => {
   return (
-    <div className='h-screen flex flex-col'>
+    <div className='h-screen flex flex-col bg-black'>
       <Navbar />
       <div className='flex-1 overflow-hidden'>
         <Routes>

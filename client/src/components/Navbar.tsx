@@ -13,7 +13,7 @@ const Navbar: React.FC = () => {
                 <ul className='cursor-pointer font-semibold text-muted/90 flex flex-row justify-between gap-10 mx-10 text-lg items-center'>
                     <li className='hover:bg-white/90 hover:text-black px-5 py-1 rounded-xl transition-all'>chats</li>
                     <li className='hover:bg-white/90 hover:text-black px-5 py-1 rounded-xl transition-all'>profile</li>
-                    <li className='bg-white/90 hover:bg-white/30 active:bg-white/10 hover:text-muted/90 border border-white/80 text-black px-5 py-1 rounded-xl transition-all'><Link target='__blank' to={'https://github.com/render-thevoid'}>Github</Link></li>
+                    <Link target='__blank' to={'https://github.com/render-thevoid'}><li className='bg-black hover:bg-white/30 active:bg-white active:text-black hover:text-muted/90 border border-white/80 text-white px-5 py-1 rounded-xl transition-all'>Github</li></Link>
                 </ul>
             </div>
         </nav>
