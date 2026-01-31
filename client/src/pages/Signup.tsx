@@ -1,14 +1,33 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Input } from "@/components/ui/input";
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import { Label } from '@radix-ui/react-label';
 
 const Signup: React.FC = () => {
+
+    const welcomeMessages = [
+        "New here? Interesting choice. Let’s get you registered.",
+        "Welcome. You’re doing this on purpose.",
+        "First time? Bold move.",
+        "New account, new problems.",
+        "First step toward being chronically online.",
+        "Creating an account was your idea.",
+        "You chose to be here. Let’s make it official."
+    ]
+
+    const [welcomeMessage, setWelcomeMessage] = useState<string>();
+
+    useEffect(() => {
+        const randomIndex: number = Math.floor(Math.random() * welcomeMessages.length);
+        setWelcomeMessage(welcomeMessages[randomIndex]);
+    }, [])
+
     return (
         <div className='flex justify-center items-center min-h-screen w-full bg-black select-none'>
             <div className='flex flex-col gap-3 border rounded-2xl px-6 pt-8  border-white/15'>
-                <h1 className='text-muted/95 font-bold text-4xl text-center mb-4'>Sign Up</h1>
+                <h1 className='text-muted/95 font-bold text-4xl text-center mt-2'>Sign Up</h1>
+                <p className='text-muted/30 text-md text-center mb-4'>{welcomeMessage}</p>
                 <div>
                     <Label className='text-muted/80 pl-2 text-lg font-bold'>Full Name</Label>
                     <Input className='placeholder:text-lg text-muted min-w-xs p-3 py-7 border-white/15' id="input-email" type="text" placeholder="Enter Name" />

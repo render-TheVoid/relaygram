@@ -1,14 +1,32 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Input } from "@/components/ui/input";
 import { Label } from '@radix-ui/react-label';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 
 const Signin: React.FC = () => {
+    const welcomeMessages = [
+        "Back already? Cool. Prove it.",
+        "You again? Fine.",
+        "Back from touching grass?",
+        "Back like you never left. Because you didn’t.",
+        "Welcome back. Same chaos. New session.",
+        "You closed the app for character development.",
+        "You left to be mysterious. It didn’t work."
+    ]
+
+    const [welcomeMessage, setWelcomeMessage] = useState<string>();
+
+    useEffect(() => {
+        const randomIndex: number = Math.floor(Math.random() * welcomeMessages.length);
+        setWelcomeMessage(welcomeMessages[randomIndex]);
+    }, [])
+    
     return (
-        <div className='flex justify-center items-center min-h-screen w-full bg-black select-none'>
+        <div className='flex justify-center flex-col items-center min-h-screen w-full bg-black select-none'>
             <div className='flex flex-col gap-2 border rounded-2xl px-6 pt-8  border-white/15'>
-                <h1 className='text-muted/95 font-bold text-4xl text-center mb-4'>sign in</h1>
+                <h1 className='text-muted/95 font-bold text-4xl text-center mt-2'>sign in</h1>
+                <p className='text-muted/30 text-md text-center mb-3'>{welcomeMessage}</p>
                 <div>
                     <Label className='text-muted/80 text-lg pl-2 font-bold'>email id</Label>
                     <Input className='placeholder:text-lg text-muted min-w-xs p-3 py-7 border-white/15' id="input-email" type="text" placeholder="Enter Email" />
