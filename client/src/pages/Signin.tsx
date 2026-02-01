@@ -20,25 +20,25 @@ const Signin: React.FC = () => {
     useEffect(() => {
         const randomIndex: number = Math.floor(Math.random() * welcomeMessages.length);
         setWelcomeMessage(welcomeMessages[randomIndex]);
-    }, [])
-    
+    }, []);
+
     return (
-        <div className='flex justify-center flex-col items-center min-h-screen w-full bg-black select-none'>
-            <div className='flex flex-col gap-2 border rounded-2xl px-6 pt-8  border-white/15'>
+        <div className='flex justify-center flex-col items-center min-h-screen w-full bg-black/98 select-none'>
+            <div className='flex flex-col gap-2 border rounded-2xl px-6 pt-8 bg-neutral-950 border-white/5'>
                 <h1 className='text-muted/95 font-bold text-4xl text-center mt-2'>sign in</h1>
                 <p className='text-muted/30 text-md text-center mb-3'>{welcomeMessage}</p>
                 <div>
                     <Label className='text-muted/80 text-lg pl-2 font-bold'>email id</Label>
-                    <Input className='placeholder:text-lg text-muted min-w-xs p-3 py-7 border-white/15' id="input-email" type="text" placeholder="Enter Email" />
+                    <Input className='placeholder:text-lg bg-neutral-900 text-muted min-w-xs p-3 py-7 border-white/10' id="input-email" type="text" placeholder="Enter Email" />
                 </div>
                 <div>
                     <Label className='text-muted/80 text-lg pl-2 font-bold'>Password</Label>
-                    <Input className='placeholder:text-lg text-muted p-3 py-7 border-white/15' id="input-pass" type="password" placeholder="Enter Password" />
+                    <Input className='placeholder:text-lg border bg-neutral-900 border-white/10 text-muted p-3 py-7' id="input-pass" type="password" placeholder="Enter Password" />
                 </div>
                 <div className='flex items-center justify-center w-full mt-5'>
                     <Button variant="outline" className='hover:bg-white/90 active:bg-white/80 py-5 font-semibold text-lg cursor-pointer min-w-full'>Log In</Button>
                 </div>
-                <p className='text-muted/70 text-center text-lg p-4 mt-4 border-t border-white/15'>New User? <Link to='/signup' className='underline hover:text-white/90 transition-all active:text-white/30'>Register Here</Link></p>
+                <p className='text-muted/70 text-center text-lg p-4 border-t border-white/10 mt-4'>New User? <Link to='/signup' className='underline hover:text-white/90 transition-all active:text-white/30'>Register Here</Link></p>
             </div>
         </div>
     );
