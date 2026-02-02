@@ -4,9 +4,15 @@ import authRoutes from './routes/authRoute.js'
 import cookieParser from 'cookie-parser';
 import { connectWithDB } from "./lib/db.js";
 import messageRoutes from "./routes/messageRoute.js"
+import cors from 'cors';
 
 const app = express();
 const PORT = process.env.PORT || 6767;
+
+app.use(cors({
+    origin: process.env.ORIGIN,
+    credentials: true
+}));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

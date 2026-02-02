@@ -13,7 +13,7 @@ const Signin: React.FC = () => {
         "Welcome back. Same chaos. New session.",
         "You closed the app for character development.",
         "You left to be mysterious. It didn’t work."
-    ]
+    ];
 
     const [welcomeMessage, setWelcomeMessage] = useState<string>();
 
