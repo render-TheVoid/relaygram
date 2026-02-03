@@ -3,6 +3,9 @@ import { Input } from "@/components/ui/input";
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import { Label } from '@radix-ui/react-label';
+import { Field } from '@/components/ui/field';
+import { Checkbox } from '@/components/ui/checkbox';
+import { FieldLabel } from '@/components/ui/field';
 
 const Signup: React.FC = () => {
 
@@ -17,6 +20,7 @@ const Signup: React.FC = () => {
     ]
 
     const [welcomeMessage, setWelcomeMessage] = useState<string>();
+    const [showPassword, setShowPassword] = useState<boolean>(false);
 
     useEffect(() => {
         const randomIndex: number = Math.floor(Math.random() * welcomeMessages.length);
@@ -38,9 +42,15 @@ const Signup: React.FC = () => {
                 </div>
                 <div>
                     <Label className='text-muted/80 pl-2 text-lg font-bold'>Password</Label>
-                    <Input className='placeholder:text-lg text-muted min-w-xs p-3 bg-neutral-900 py-7 border-white/10' id="input-pass" type="password" placeholder="Enter Password" />
+                    <Input className='placeholder:text-lg text-muted min-w-xs p-3 bg-neutral-900 py-7 border-white/10' id="input-pass" type={showPassword ? "text" : "password"} placeholder="Enter Password" />
                 </div>
-                <div className='flex items-center justify-center w-full mt-5'>
+                <div className='border border-white/10 rounded-md p-2 bg-neutral-900 w-fit pr-3 mt-2'>
+                    <Field orientation="horizontal">
+                        <Checkbox id="toggle-checkbox" name="toggle-checkbox" className='bg-neutral-950 w-5 h-5 border border-white/20' onCheckedChange={() => setShowPassword(!showPassword)} />
+                        <FieldLabel className='text-white' htmlFor="toggle-checkbox">Show Password</FieldLabel>
+                    </Field>
+                </div>
+                <div className='flex items-center justify-center w-full mt-2'>
                     <Button variant="outline" className='hover:bg-white/90 active:bg-white/80 cursor-pointer font-semibold text-lg py-5 min-w-full'>Register</Button>
                 </div>
                 <p className='text-muted/70 text-center text-lg p-4 mt-4 border-t border-white/10'>Already a user? <Link to={'/signin'} className='underline hover:text-white/90 transition-all active:text-white/30'>Login</Link></p>
