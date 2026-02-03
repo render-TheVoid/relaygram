@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Field } from '@/components/ui/field';
 import { FieldLabel } from '@/components/ui/field';
+import { Toaster, toast } from 'sonner';
 
 const Signin: React.FC = () => {
     const welcomeMessages = [
@@ -18,6 +19,16 @@ const Signin: React.FC = () => {
         "You left to be mysterious. It didn’t work."
     ];
 
+    interface FormData {
+        email: string,
+        password: string
+    }
+
+    const [formData, setFormData] = useState<FormData>({
+        email: "",
+        password: ""
+    });
+
     const [welcomeMessage, setWelcomeMessage] = useState<string>();
     const [showPassword, setShowPassword] = useState<boolean>(false);
 
@@ -26,18 +37,25 @@ const Signin: React.FC = () => {
         setWelcomeMessage(welcomeMessages[randomIndex]);
     }, []);
 
+    const handleFormSubmission = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        if (formData.email.trim() == '') toast('email is required!');
+        if (formData.password.trim() == '') toast('password is required!');
+    }
+
     return (
         <div className='flex justify-center flex-col items-center min-h-screen w-full bg-black/98 select-none'>
-            <form className='flex flex-col gap-2 border rounded-2xl px-6 pt-8 bg-neutral-950 border-white/5'>
+            <Toaster toastOptions={{style:{fontSize: 20, fontWeight: 500}}} />
+            <form className='flex flex-col gap-2 border rounded-2xl px-6 pt-8 bg-neutral-950 border-white/5' onSubmit={(e) => handleFormSubmission(e)}>
                 <h1 className='text-muted/95 font-bold text-4xl text-center mt-2'>sign in</h1>
                 <p className='text-muted/30 text-md text-center mb-3'>{welcomeMessage}</p>
                 <div>
                     <Label className='text-muted/80 text-lg pl-2 font-bold'>email id</Label>
-                    <Input className='placeholder:text-lg bg-neutral-900 text-muted min-w-xs p-3 py-7 border-white/10' id="input-email" type="text" placeholder="Enter Email" />
+                    <Input className='placeholder:text-lg bg-neutral-900 text-muted min-w-xs p-3 py-7 border-white/10' id="input-email" type="text" placeholder="Enter Email" value={formData.email} onChange={(e) => setFormData({...formData, email: e.target.value})}/>
                 </div>
                 <div>
                     <Label className='text-muted/80 text-lg pl-2 font-bold'>Password</Label>
-                    <Input className='placeholder:text-lg border bg-neutral-900 border-white/10 text-muted p-3 py-7' id="input-pass" type={showPassword ? "text" : "password"} placeholder="Enter Password" />
+                    <Input className='placeholder:text-lg border bg-neutral-900 border-white/10 text-muted p-3 py-7' id="input-pass" type={showPassword ? "text" : "password"} placeholder="Enter Password" value={formData.password} onChange={(e) => setFormData({...formData, password: e.target.value})}/>
                 </div>
                 <div className='border border-white/10 rounded-md p-2 bg-neutral-900 w-fit pr-3 mt-2'>
                     <Field orientation="horizontal">
