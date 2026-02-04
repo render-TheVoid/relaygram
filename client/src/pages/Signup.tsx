@@ -7,7 +7,6 @@ import { Field } from '@/components/ui/field';
 import { Checkbox } from '@/components/ui/checkbox';
 import { FieldLabel } from '@/components/ui/field';
 import { toast } from 'sonner';
-import { Toaster } from 'sonner';
 import { useAuthStore } from '@/lib/useAuth';
 
 const Signup: React.FC = () => {
@@ -22,7 +21,7 @@ const Signup: React.FC = () => {
         "You chose to be here. Let’s make it official."
     ];
 
-    const {signup, isSigningUp} = useAuthStore();
+    const { signup, isSigningUp } = useAuthStore();
 
     interface FormData {
         fullName: string,
@@ -59,7 +58,6 @@ const Signup: React.FC = () => {
 
     return (
         <div className='flex justify-center items-center min-h-screen w-full bg-black/98 select-none'>
-            <Toaster toastOptions={{ style: { fontSize: 20, fontWeight: 500 } }} />
             <form className='flex flex-col gap-3 border rounded-2xl px-6 pt-8 bg-neutral-950 border-white/5' onSubmit={(e) => handleFormSubmission(e)}>
                 <h1 className='text-muted/95 font-bold text-4xl text-center mt-2'>Sign Up</h1>
                 <p className='text-muted/30 text-md text-center mb-4'>{welcomeMessage}</p>
@@ -69,7 +67,7 @@ const Signup: React.FC = () => {
                 </div>
                 <div>
                     <Label className='text-muted/80 pl-2 text-lg font-bold'>Email ID</Label>
-                    <Input className='placeholder:text-lg text-muted min-w-xs p-3 bg-neutral-900 py-7 border-white/10' id="input-email" type="text" placeholder="Enter Email" value={formData.email} onChange={(e) => setFormData({ ...formData, email: e.target.value })} />
+                    <Input className='placeholder:text-lg text-muted min-w-xs p-3 bg-neutral-900 py-7 border-white/10' id="input-email" type="email" placeholder="Enter Email" value={formData.email} onChange={(e) => setFormData({ ...formData, email: e.target.value })} />
                 </div>
                 <div>
                     <Label className='text-muted/80 pl-2 text-lg font-bold'>Password</Label>

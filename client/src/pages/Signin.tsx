@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Field } from '@/components/ui/field';
 import { FieldLabel } from '@/components/ui/field';
-import { Toaster, toast } from 'sonner';
+import { toast } from 'sonner';
 
 const Signin: React.FC = () => {
     const welcomeMessages = [
@@ -45,7 +45,6 @@ const Signin: React.FC = () => {
 
     return (
         <div className='flex justify-center flex-col items-center min-h-screen w-full bg-black/98 select-none'>
-            <Toaster toastOptions={{style:{fontSize: 20, fontWeight: 500}}} />
             <form className='flex flex-col gap-2 border rounded-2xl px-6 pt-8 bg-neutral-950 border-white/5' onSubmit={(e) => handleFormSubmission(e)}>
                 <h1 className='text-muted/95 font-bold text-4xl text-center mt-2'>sign in</h1>
                 <p className='text-muted/30 text-md text-center mb-3'>{welcomeMessage}</p>

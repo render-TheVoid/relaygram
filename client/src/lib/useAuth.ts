@@ -16,6 +16,7 @@ interface AuthStore {
     isCheckingAuth: boolean;
     checkAuth: () => Promise<void>;
     signup: (data: Data) => Promise<void>;
+    logout: () => Promise<void>;
 }
 
 interface Data {
@@ -46,10 +47,19 @@ export const useAuthStore = create<AuthStore>((set) => ({
         set({ isSigningUp: true });
         try {
             const res = await axiosInstance.post('/auth/signup', data);
-            set({authUser: res.data});
+            set({ authUser: res.data });
             toast.success('account created successfully');
         } catch (err: any) {
-            toast.error(`Some error occured: ${err.response.data.message}`)
+            toast.error(err.response.data.message)
+        }
+    },
+    logout: async () => {
+        try {
+            await axiosInstance.post('/auth/logout');
+            set({ authUser: null });
+            toast.success('logged out succesfully!')
+        } catch (err) {
+            toast.error('something went wrong!');
         }
     }
 })); 
