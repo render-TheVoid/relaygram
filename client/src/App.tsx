@@ -39,7 +39,8 @@ const App: React.FC = () => {
           <Route path='/about' element={<AboutPage />} />
           <Route path='/signin' element={!authUser ? <Signin /> : <Navigate to={'/'} />} />
           <Route path='/signup' element={!authUser ? <Signup /> : <Navigate to={'/'} />} />
-          <Route path='/profile' element={authUser ? <ProfilePage /> : <Navigate to={'/login'} />} />
+          <Route path='/profile' element={<ProfilePage />} />
+          {/* <Route path='/profile' element={authUser ? <ProfilePage /> : <Navigate to={'/signin'} />} /> uncomment this asap */} 
         </Routes>
       </div>
     </div>

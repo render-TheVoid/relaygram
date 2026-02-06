@@ -15,12 +15,19 @@ interface AuthStore {
     isUpdatingProfile: boolean;
     isCheckingAuth: boolean;
     checkAuth: () => Promise<void>;
-    signup: (data: Data) => Promise<void>;
+    signup: (data: SignUpData) => Promise<void>;
+    signin: (data: SignInData) => Promise<void>;
+    // updateProfile (data: updateData) => Promise<void>;
     logout: () => Promise<void>;
 }
 
-interface Data {
+interface SignUpData {
     fullName: string,
+    email: string,
+    password: string
+}
+
+interface SignInData {
     email: string,
     password: string
 }
@@ -43,7 +50,8 @@ export const useAuthStore = create<AuthStore>((set) => ({
             set({ isCheckingAuth: false });
         }
     },
-    signup: async (data: Data) => {
+
+    signup: async (data: SignUpData) => {
         set({ isSigningUp: true });
         try {
             const res = await axiosInstance.post('/auth/signup', data);
@@ -53,6 +61,20 @@ export const useAuthStore = create<AuthStore>((set) => ({
             toast.error(err.response.data.message)
         }
     },
+
+    signin: async (data: SignInData) => {
+        set({ isLoggingIn: true });
+        try {
+            const res = await axiosInstance.post('/auth/login', data);
+            set({ authUser: res.data });
+            toast.success(`logged in as ${res.data?.fullName}`);
+        } catch (err: any) {
+            toast.error(err.response.data.message);
+        } finally {
+            set({ isLoggingIn: false });
+        }
+    },
+
     logout: async () => {
         try {
             await axiosInstance.post('/auth/logout');
@@ -61,5 +83,9 @@ export const useAuthStore = create<AuthStore>((set) => ({
         } catch (err) {
             toast.error('something went wrong!');
         }
+    },
+
+    updateProfile: async () => {
+        
     }
 })); 

@@ -34,11 +34,11 @@ const Navbar: React.FC = () => {
                     <h1 className='text-2xl text-muted/90 font-extrabold'>relaygram</h1>
                 </div></Link>
                 {!authUser && <div>
-                    <h1 className='font-semibold text-lg text-muted/30'>{motivationalLines}</h1>
+                    <h1 className='font-semibold text-md text-muted/30'>{motivationalLines}</h1>
                 </div>}
                 <ul className='cursor-pointer font-semibold text-muted/90 flex flex-row justify-between gap-10 mx-10 text-lg items-center'>
                     {authUser && <li className='hover:bg-white/90 hover:text-black px-5 py-1 rounded-xl transition-all'>chats</li>}
-                    {authUser && <li className='hover:bg-white/90 hover:text-black px-5 py-1 rounded-xl transition-all'>profile</li>}
+                    {authUser && (<Link to={'/profile'}><li className='hover:bg-white/90 hover:text-black px-5 py-1 rounded-xl transition-all'>profile</li></Link>)}
                     {authUser && <li className='hover:bg-red-800 hover:text-black px-5 py-1 rounded-xl transition-all' onClick={logout}>logout</li>}
                     <Link target='__blank' to={'https://github.com/render-thevoid'}><li className='hover:bg-black bg-white active:border-black active:text-white text-black border border-white/80 hover:text-white px-5 py-1 rounded-xl transition-all'>Github</li></Link>
                 </ul>
