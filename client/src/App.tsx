@@ -4,6 +4,7 @@ import Signup from './pages/Signup';
 import Navbar from './components/Navbar';
 import Homepage from './pages/Homepage';
 import AboutPage from './pages/AboutPage';
+import ChatPage from './pages/ChatPage';
 import { Route, Routes } from 'react-router-dom';
 import { useAuthStore } from './lib/useAuth';
 import { useEffect } from 'react';
@@ -40,6 +41,7 @@ const App: React.FC = () => {
           <Route path='/signin' element={!authUser ? <Signin /> : <Navigate to={'/'} />} />
           <Route path='/signup' element={!authUser ? <Signup /> : <Navigate to={'/'} />} />
           <Route path='/profile' element={<ProfilePage />} />
+          <Route path='/chat/:userId' element={<ChatPage />} />
           {/* <Route path='/profile' element={authUser ? <ProfilePage /> : <Navigate to={'/signin'} />} /> uncomment this asap */} 
         </Routes>
       </div>

@@ -8,6 +8,17 @@ export interface AuthUser {
     name: string;
 }
 
+interface SignUpData {
+    fullName: string,
+    email: string,
+    password: string
+}
+
+interface SignInData {
+    email: string,
+    password: string
+}
+
 interface AuthStore {
     authUser: AuthUser | null;
     isSigningUp: boolean;
@@ -19,17 +30,6 @@ interface AuthStore {
     signin: (data: SignInData) => Promise<void>;
     // updateProfile (data: updateData) => Promise<void>;
     logout: () => Promise<void>;
-}
-
-interface SignUpData {
-    fullName: string,
-    email: string,
-    password: string
-}
-
-interface SignInData {
-    email: string,
-    password: string
 }
 
 export const useAuthStore = create<AuthStore>((set) => ({
